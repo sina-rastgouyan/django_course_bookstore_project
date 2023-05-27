@@ -17,4 +17,5 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': ('age', )}),
     )
 
+admin.site.register(CustomUser, CustomUserAdmin)
 
