@@ -17,5 +17,7 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': ('age', )}),
     )
 
+    list_display = ['username', 'email', 'age', 'is_staff']
+
 admin.site.register(CustomUser, CustomUserAdmin)
 
