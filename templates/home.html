@@ -3,4 +3,13 @@
 {% block 'page_title' %}home page{% endblock %}
 {% block content %}
     <h1>This is home page </h1>
+    {% if user.is_authenticated %}
+        <div>    
+            <p> Welcome <b>{{user.username}}</b>  | <a href="{% url 'logout' %}">logout</a></p>
+        </div>
+    {% else %}
+        <div>
+            <p><a href="{% url 'login' %}">Login</a> | SignUp</p>
+        </div>
+    {% endif %}
 {% endblock %}
