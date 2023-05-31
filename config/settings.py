@@ -130,9 +130,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Reference Custom User Model
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+# Refer User After Login & Logout 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+# Add Crispy Form Design Method
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Config Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
