@@ -1,0 +1,12 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}حذف کتاب{% endblock %}
+{% block content %}
+    <form class='mt-3' action='' method='post'>
+        {% csrf_token %}
+        <h2>آیا از حذف کتاب {{book.title}} مطمعن هستید؟!</h2>
+        <p>فرایند حذف به صورت دائمی خواهد بود و در نتیجه قادر به <b>بازگردانی</b>نخواهید بود.</p>
+        <button type='submit' class='btn btn-danger'>بله مطمعنم</button>
+    </form>
+{%endblock%}

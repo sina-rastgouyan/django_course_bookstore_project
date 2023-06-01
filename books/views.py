@@ -27,4 +27,7 @@ class BookUpdateView(generic.UpdateView):
     form_class = BookForm
     template_name = 'books/book_detail_update.html'
     
-    
+class BookDeleteView(generic.DeleteView):
+    model = Book
+    template_name = 'books/delete_book_ensurement.html'
+    success_url = reverse_lazy('book_list')
