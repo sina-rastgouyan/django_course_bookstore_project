@@ -22,3 +22,9 @@ class BookCreateView(generic.CreateView):
     fields = ['title', 'description', 'author', 'price']
     success_url = reverse_lazy('book_list')
 
+class BookUpdateView(generic.UpdateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'books/book_detail_update.html'
+    
+    
