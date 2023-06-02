@@ -3,6 +3,7 @@
 {% block page_title %}لیست کتاب ها{% endblock %}
 {% block content %}
     {% for book in books %}
-        <h3><a href="{{book.get_absolute_url}}">{{book.title}}</a></h3>
+        <h3><a href="{{book.get_absolute_url}}">{{book.title|capfirst}}</a></h3>
+        <p>{{book.description|truncatewords:12}}</p>
     {% endfor %}
 {% endblock %}

@@ -2,9 +2,9 @@
 
 {% block page_title %}جزئیات کتاب {{book.title}}{% endblock %}
 {% block content %}
-    <h2>{{book.title}}</h2>
+    <h2>{{book.title|capfirst}}</h2>
     <br>
-    <p>{{book.description}}</p>
-    <b>نویسنده: {{book.title}}</b>
+    <p>{{book.description|linebreaks}}</p>
+    <b>نویسنده: {{book.author|capfirst}}</b>
     <p><b>{{book.price}}</b></p>
 {% endblock %}
