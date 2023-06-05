@@ -13,6 +13,7 @@ class Author(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=350)
+    post_creator = models.ForeignKey(get_user_model(), on_delete=models.CASCADE) 
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='book')
     description = models.TextField() 
     price = models.DecimalField(max_digits=6, decimal_places=2)
