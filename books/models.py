@@ -31,6 +31,8 @@ class Comment(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comment')
     text = models.TextField()
     date_time_created = models.DateTimeField(auto_now_add=True)
+    recommend = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.text
