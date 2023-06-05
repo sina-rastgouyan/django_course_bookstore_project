@@ -17,14 +17,17 @@
                                 {% else %}
                                     <img src="{% static 'default_images/No_Cover_Image.jpg' %}" class="img-fluid rounded-start" alt="..."> 
                                 {% endif %}
-                                <a class="mt-2 btn btn-info" href="{% url 'book_update' book.id %}">ویرایش</a>
-                                <span>  </span>
-                                <a class="mt-2 btn btn-danger" href="{% url 'delete_book' book.id%}">حذف</a>
+                                {% if book.post_creator == user %}
+                                    <a class="mt-2 btn btn-info" href="{% url 'book_update' book.id %}">ویرایش</a>
+                                    &nbsp;
+                                    <a class="mt-2 btn btn-danger mr-3" href="{% url 'delete_book' book.id%}">حذف</a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6 text-center text-md-end mt-md-1 mt-4">
                             <h1>{{ book.title }}</h1>
                             <h5 class="small my-1"><span class="text-muted">نویسنده: </span>{{book.author}}</h5>
+                            <h5 class="small my-1"><span class="text-muted">ایجاد کننده پست: </span>{{book.post_creator.username}}</h5>
                         </div>
                         <div class="col-xs-12 col-md-3 d-flex flex-column">
                             <h3 class="align-self-center pt-2 text-muted align-self-md-end">
@@ -46,13 +49,17 @@
                         {% for comment in comments %}
                             {% if comment.is_active %}
                             <div class="border-bottom mb-3">
-                                <h5 class="mb-3">{{comment.user.username}}</h5>
-                                <p>{{comment.text|linebreaks}}</p>
                                 {% if comment.recommend %}
-                                    <span class="bg-light text-success"> این کتاب را <b>توصیه می کنم</b></span>
+                                {% comment %} <h5 class="mb-3"></h5> {% endcomment %}
+                                    <span class="fs-5">{{comment.user.username}}</span>
+                                    &nbsp;&nbsp;
+                                    <span class="font-weight-lighter bg-light text-success">( این کتاب را <b>توصیه می کنم</b>)</span>
                                 {% else %}
-                                    <span class="bg-light text-danger"> این کتاب را <b>توصیه نمی کنم</b></span>
+                                    <span class="fs-5">{{comment.user.username}}</span>
+                                    &nbsp;&nbsp;
+                                    <span class="font-weight-lighter bg-light text-danger">( این کتاب را <b>توصیه نمی کنم</b>)</span>
                                 {% endif %}
+                                <p>{{comment.text|linebreaks}}</p>
                             </div>
                             {% endif %}
                         {% endfor %}
