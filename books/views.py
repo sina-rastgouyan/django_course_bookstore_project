@@ -1,4 +1,6 @@
 from typing import Optional
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.urls import reverse_lazy, reverse
@@ -51,7 +53,12 @@ def book_detail_view(request, pk):
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Book
     template_name = 'books/book_creation.html'
-    fields = ['title', 'description', 'author', 'price', 'cover', 'post_creator']
+    fields = ['title', 'description', 'author', 'price', 'cover']
+    def form_valid(self, form: BaseModelForm):
+        form.instance.post_creator = self.request.user
+        return super().form_valid(form)
+        
+    
     success_url = reverse_lazy('book_list')
 
 class BookUpdateView(LoginRequiredMixin,UserPassesTestMixin, generic.UpdateView):
