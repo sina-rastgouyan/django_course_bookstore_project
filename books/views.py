@@ -54,7 +54,7 @@ class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Book
     template_name = 'books/book_creation.html'
     fields = ['title', 'description', 'author', 'price', 'cover']
-    def form_valid(self, form: BaseModelForm):
+    def form_valid(self, form):
         form.instance.post_creator = self.request.user
         return super().form_valid(form)
         
