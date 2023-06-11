@@ -51,7 +51,7 @@ def book_detail_view(request, pk):
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Book
     template_name = 'books/book_creation.html'
-    fields = ['title', 'description', 'author', 'price', 'cover']
+    fields = ['title', 'description', 'author', 'price', 'cover', 'post_creator']
     success_url = reverse_lazy('book_list')
 
 class BookUpdateView(LoginRequiredMixin,UserPassesTestMixin, generic.UpdateView):
